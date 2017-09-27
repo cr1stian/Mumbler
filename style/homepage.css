@@ -1,0 +1,23 @@
+*{
+ background-color: #1abc9c;
+ box-sizing: border-box;
+}
+*:focus {
+	outline: none;
+}
+.title{
+  text-align: right;
+  font-family: monospace;
+
+}
+#comment{
+  width: 40%;
+  margin: 0 auto;
+
+}
+.btn{
+  margin: .2%;
+}
+form{
+  position: absolute;
+}

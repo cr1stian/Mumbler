@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="homepage.css">
+    <title>What's on Your Mind?</title>
+  </head>
+  <body>
+<div>
+
+    <form method="post" action="logout">
+      <input class="btn btn-warning" type="submit" value="SignOut">
+    </form>
+
+    <p class="title">Hey there, {{name}}!</p>
+
+    <div class="text">
+      <form method="post" action="/message/new">
+        <textarea name='media' class="form-control" rows="5" id="comment" placeholder="Mumble Here. ."></textarea>
+        <input type="submit" value="Submit" class="btn btn-primary"/>
+      </form>
+      </div>
+
+
+
+</div>
+
+
+  </body>
+</html>
