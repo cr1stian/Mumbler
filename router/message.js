@@ -1,27 +1,53 @@
 const express = require("express")
 const router = express.Router();
-const Message = require("../model/Message")
+const model = require('../models')
 
-router.get('/message/new',function(req, res){
-  res.render("message")
-})
-router.post('/message/new', function(req, res){
-  const message = new Message()
-  message.title = req.body.title
-  message.body = req.body.body
-  message.username = req.user.username
-  message.createAt = Date.now()
-  message.save()
-  .then(function(link){
-    res.redirect("/")
+router.post('/post', (req, res) =>{
+
+  sess = req.session
+  const username = sess.username
+
+  if(username){
+    model.user.findOne({
+       where:{
+         username: username
+    }
+  }).then( (user)=> {
+
+
+const newPost = model.post.build({
+  userId: user.id,
+  body: req.body.post
   })
-  .catch(function(error){
-    console.log("MESSAGE ERROR");
-    res.render("message", {
-      error: error
-    })
+  newPost.save().then(function(){
+    res.redirect('/homepage')
   })
-})
+ })
+}
+});
+
+router.post('/comment/:id', (req, res) => { //here we grab the ID from the post we are commenting to
+
+  const newComment = model.comment.build({
+    postId: req.params.id,
+    body: req.body.comment
+  })
+  newComment.save().then(function(){
+    res.redirect('/homepage')
+  })
+});
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

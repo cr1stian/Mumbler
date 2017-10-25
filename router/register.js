@@ -1,23 +1,23 @@
-const express = require("express")
+const express = require("express");
 const router = express.Router();
-const User = require("../model/registerSchema")
+const models = require('../models');
 
-router.get('/register', function(request, response){
-
+router.get('/register', (request, response) =>  {
   response.render('register')
-})
+});
 
+router.post('/register', (request, response) => {
+  if(request.body.password === request.body.confirm){
 
+  const newUser = models.user.build({
+    name: request.body.name,
+    username: request.body.username,
+    email: request.body.email,
+    password: request.body.password
+  })
 
-router.post('/register', function(request, response){
-  if(request.body.newPass === request.body.confirm){
-    const user = new User();
-    user.name = request.body.name
-    user.username = request.body.newUser
-    user.password = request.body.newPass
-    user.save()
-    .then(function(user){
-      request.session.userId = user._id
+  newUser.save().then(function(user){
+    console.log(user)
       response.redirect('/')
     })
     .catch(function(error){
@@ -31,7 +31,25 @@ router.post('/register', function(request, response){
       error_message: error_message
     })
     }
-})
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 module.exports = router;
