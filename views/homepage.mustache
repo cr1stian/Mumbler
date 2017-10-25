@@ -14,14 +14,50 @@
       <input class="btn btn-warning" type="submit" value="SignOut">
     </form>
 
-    <p class="title">Hey there, {{name}}!</p>
+
+
+
+
+    <p class="title">Hey there, {{user}}!</p>
+
+
+
+
+
+
 
     <div class="text">
-      <form method="post" action="/message/new">
-        <textarea name='media' class="form-control" rows="5" id="comment" placeholder="Mumble Here. ."></textarea>
+      <form method="post" action="/post">
+        <textarea name='post' class="form-control" rows="5" id="comment" placeholder="Mumble Here. ."></textarea>
         <input type="submit" value="Submit" class="btn btn-primary"/>
       </form>
       </div>
+
+
+
+      {{#content}}
+
+      <div class='content'>
+        <p>{{body}}</p>
+      </div>
+
+
+      {{#comment}}
+        <h6>Comments:</h6>
+        <p>{{body}}</p>
+        {{/comment}}
+
+        <form method="post" action="/comment/{{id}}">
+          <textarea name='comment' class="form-control" rows="5" id="comment" placeholder="Mumble Here. ."></textarea>
+          <input type="submit" value="Submit" class="btn btn-primary"/>
+        </form>
+
+      {{/content}}
+
+
+
+
+
 
 
 

@@ -1,24 +1,30 @@
 const express = require("express")
 const router = express.Router();
-const User = require("../model/registerSchema")
+const models = require('../models');
 
-router.get('/login', function(request, response){
-  response.render('login')
+router.get('/login', (req, res) =>{
+  res.render('login')
 })
 
-router.post('/home', function(request, response){
-  User.findOne({
-    username: request.body.username,
-    password: request.body.password
-  }).then(function(user){
-    if(user){
-      console.log(user)
-      request.session.userId = user._id
-      response.render('homepage', {
-        name: user.name
-       })
-    }else{
-      let error = " "
+
+router.post('/login', (req, res) =>{
+  const username = req.body.username
+  const password = req.body.password
+  sess = req.session
+
+ models.user.findOne({
+    where:{
+      username: username
+    }
+  }).then( (user) => {
+    if(user.password === password){
+      sess.username = user.username
+      sess.password = user.password
+      console.log(sess)
+      return res.redirect('homepage')
+    }
+    else{
+      let error = "Password is incorrect. "
       response.render('login',{
         error: error
       })
@@ -26,13 +32,28 @@ router.post('/home', function(request, response){
   })
 })
 
-router.post('/logout',function(req, res){
-  req.session.destroy(function(){
-    res.redirect('/login')
-  })
+router.post('/logout', (req, res) => {
+    sess = req.session
+    sess.username = ''
+    sess.password = ''
+
+ return res.redirect('/login')
+
+
 })
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 module.exports = router;
-//must render person's name when logging in

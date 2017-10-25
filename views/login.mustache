@@ -24,7 +24,7 @@
     <div class="app-title">
       <h1>Login</h1>
     </div>
-    <form action="/home" method="post">
+    <form action="/login" method="post">
     <div class="login-form">
       <div class="control-group">
       <input type="text" class="login-field" name="username" placeholder="username" id="login-name">
@@ -43,11 +43,11 @@
 </div>
   </div>
 </div>
-{{#error}}
+
 <div class="error">
-<p>Incorrect Credentials</p>
+<p>{{error}}</p>
 </div>
-{{/error}}
+
 <script>
 function w3_open() {
     document.getElementById("mySidebar").style.display = "block";
