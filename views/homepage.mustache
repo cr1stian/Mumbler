@@ -11,14 +11,14 @@
 <div>
 
     <form method="post" action="logout">
-      <input class="btn btn-warning" type="submit" value="SignOut">
+      <input class="btn btn-warning" id="signOut" type="submit" value="SignOut">
     </form>
 
 
 
 
 
-    <p class="title">Hey there, {{user}}!</p>
+    <h3 class="title">Hey there, <span style="color:#7f8c8d; font-size:32px"> {{user}}! </style></h3>
 
 
 
@@ -28,40 +28,39 @@
 
     <div class="text">
       <form method="post" action="/post">
-        <textarea name='post' class="form-control" rows="5" id="comment" placeholder="Mumble Here. ."></textarea>
-        <input type="submit" value="Submit" class="btn btn-primary"/>
+        <textarea name='post' class="form-control"  rows="3" id="post" placeholder="Mumble Here. ."></textarea>
+        <input type="submit" value="Submit" id="postbtn" class="btn btn-primary"/>
       </form>
       </div>
 
 
 
       {{#content}}
-
+      <!--Post-->
+      <div class="container">
       <div class='content'>
-        <p>{{body}}</p>
+        <h4>{{personname}}:</h4>
+        <p style="color: #292929">{{body}}</p>
       </div>
 
 
-      {{#comment}}
-        <h6>Comments:</h6>
-        <p>{{body}}</p>
+        {{#comment}}
+        <!--Comment and-->
+        <h4>Comments:</h4>
+        <div class="card">
+          <h6>{{username}}:</h6>
+        <p style="color:black">{{body}}</p>
+        </div>
         {{/comment}}
 
+          <div class="card-body">
         <form method="post" action="/comment/{{id}}">
-          <textarea name='comment' class="form-control" rows="5" id="comment" placeholder="Mumble Here. ."></textarea>
+          <textarea name='comment' class="form-control" rows="1" id="comment" placeholder="Comment Here. ."></textarea>
           <input type="submit" value="Submit" class="btn btn-primary"/>
+          </div>
         </form>
-
+      </div>
       {{/content}}
-
-
-
-
-
-
-
-
-</div>
 
 
   </body>

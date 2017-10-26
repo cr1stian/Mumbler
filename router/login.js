@@ -20,7 +20,6 @@ router.post('/login', (req, res) =>{
     if(user.password === password){
       sess.username = user.username
       sess.password = user.password
-      console.log(sess)
       return res.redirect('homepage')
     }
     else{
@@ -41,19 +40,6 @@ router.post('/logout', (req, res) => {
 
 
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 module.exports = router;

@@ -17,7 +17,6 @@ router.post('/register', (request, response) => {
   })
 
   newUser.save().then(function(user){
-    console.log(user)
       response.redirect('/')
     })
     .catch(function(error){

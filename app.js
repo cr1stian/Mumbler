@@ -29,8 +29,9 @@ app.get('/', function(req, res){
 app.get('/homepage', (req, res) => {
 
 sess = req.session
+const username = sess.username
 
-if(sess.username){
+if(username){
   models.post.findAll({
     include: [{
       model: models.comment,
@@ -38,7 +39,7 @@ if(sess.username){
     }]
   }).then((content) => {
     return  res.render('homepage', {
-      user: sess.username,
+      user: username,
       content: content
     })
   })
