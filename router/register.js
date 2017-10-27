@@ -10,7 +10,6 @@ router.post('/register', (request, response) => {
   if(request.body.password === request.body.confirm){
 
   const newUser = models.user.build({
-    name: request.body.name,
     username: request.body.username,
     email: request.body.email,
     password: request.body.password
@@ -31,24 +30,6 @@ router.post('/register', (request, response) => {
     })
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 module.exports = router;

@@ -6,11 +6,9 @@ router.get('/login', (req, res) =>{
   res.render('login')
 })
 
-
 router.post('/login', (req, res) =>{
   const username = req.body.username
   const password = req.body.password
-  sess = req.session
 
  models.user.findOne({
     where:{
@@ -18,8 +16,8 @@ router.post('/login', (req, res) =>{
     }
   }).then( (user) => {
     if(user.password === password){
-      sess.username = user.username
-      sess.password = user.password
+      req.session.username = user.username
+      req.session.password = user.password
       return res.redirect('homepage')
     }
     else{
@@ -32,12 +30,11 @@ router.post('/login', (req, res) =>{
 })
 
 router.post('/logout', (req, res) => {
-    sess = req.session
-    sess.username = ''
-    sess.password = ''
 
- return res.redirect('/login')
+    req.session.username = ''
+    req.session.password = ''
 
+ return res.redirect('/index')
 
 })
 
