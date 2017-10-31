@@ -18,16 +18,19 @@ router.get('/homepage', function(req, res) {
       order: [
         ['createdAt', 'DESC']
       ]
-    }).then((content) => {res.render('homepage', {
+    }).then((content) => {
+      res.render('homepage', {
       content: content,
       user: req.session.username
-
     })
   })
 }else{
  res.redirect('index')
 }
 });
+
+
+
 
 
 router.post('/logout', (req, res) => {

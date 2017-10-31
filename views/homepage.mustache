@@ -12,17 +12,9 @@
     <title>What's on Your Mind?</title>
   </head>
   <body>
-<div>
 
-
-
-  <form method="post" action="logout">
-    <input class="btn btn-warning" id="signOut" type="submit" value="SignOut">
-  </form>
-
-
-    <div class="w3-container w3-center">
-      <h1 class="top-text">Mumbler!</h1>
+    <div class="header">
+      <h1>Mumbler!</h1>
       <br>
     </div>
 
@@ -31,13 +23,14 @@
   <h3 class="title">Hey <span style="color:#7f8c8d; font-size:32px; padding-left:5px">{{user}}</span>, got a <a style="font-size:36px" href="http://0.0.0.0:3000/post">Rant?</a></h3>
 <br>
 
+<div class="flex">
 
 {{#content}}
 
 <!--Post-->
-  <div class="container">
+  <div class="container" >
 
-  <div class='content'>
+  <div class='content' >
     <h4>{{postedby}}</h4>
     <br>
     <p style="color: #292929">{{body}}</p>
@@ -47,42 +40,54 @@
   <form  class="likes" method="post" action="/likes">
 
 
-    <input type="image" src="https://image.flaticon.com/icons/png/128/149/149762.png" style="width:20px; height:20px; display:inline" border="0" alt="Submit" value="{{id}}" ></input>
+    <input type="image" name="id" src="https://image.flaticon.com/icons/png/128/149/149762.png" style="width:20px; height:20px; display:inline" border="0" alt="Submit" value="{{id}}" ></input>
 
-    {{likes}} <a class="likeby" value="{{id}}"> . . .</a>
+    {{likes}} <a class="likeby" id="{{id}}" value="{{id}}"  name="id" onclick="displayLikes()" > . . .</a>
 
   </form>
 
-      <button class="btn btn-danger" style="float: right; margin-top:-30px">Delete</button>
+      <form method="post" action="/delete">
+      <button class="btn btn-danger" style="float: right; margin-top:-30px" value="{{id}}"  name="id" type="submit">Delete</button>
+      </form>
 
+
+
+      <div class ="wholiked" value="{{id}}"   name="id" style="display: none">
+      <a style="color: #3498db"> {{likedby}} </a>
+    </div>
 
 </div>
 
-
-
-
   </div>
   </div>
 
+  {{/content}}
 
-
-
-{{/content}}
-
-
-
+<div id="signOut">
+  <form method="post" action="logout">
+    <input class="btn btn-warning" type="submit" value="SignOut">
+  </form>
+</div>
   </body>
 
   <script>
 
-  // function w3_open() {
-  //     document.getElementById("").style.display = "block";
-  // }
-  // function w3_close() {
-  //     document.getElementById("").style.display = "none";
-  // }
+
+var wholiked = document.querySelector('.wholiked');
+
+  function displayLikes() {
+
+  if(wholiked.style.display === 'none'){
+
+    wholiked.style.display = 'block'
+
+     }else{
+       wholiked.style.display = 'none'
+     }
+   }
 
 
   </script>
+
 
 </html>
